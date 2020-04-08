@@ -1,4 +1,6 @@
 // app.ts
+import { mitt } from './utils/index';
+
 App({
     /* 生命周期 */
     // 小程序初始化完成时触发，全局只触发一次
@@ -16,6 +18,8 @@ App({
 
     /* Global Data */
     globalData: { },
+
+    emitter: mitt(),
 
     /* Global Methods */
 

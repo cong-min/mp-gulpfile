@@ -5,7 +5,10 @@
         ext-class="main-msg"
         title="小程序 Gulp 模板"
         icon="/assets/img/gulp.png">
-        <view slot="desc" class="main-content">来自 github.com/mcc108/mp-gulpfile 小程序 gulpfile 最佳实践</view>
+        <view slot="desc" class="main-content">
+            <view>来自 github.com/mcc108/mp-gulpfile</view>
+            <view>微信小程序 gulpfile 最佳实践</view>
+        </view>
         <view slot="extend">
             <view>🚀 轻量极速构建</view>
             <view>🧰 支持 typescript, less</view>
