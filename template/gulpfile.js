@@ -41,12 +41,14 @@ globs.copy = [`${src}/**`,
     `!${globs.image}`]; // 匹配需要拷贝的文件
 
 /** `gulp clear`
- * 清理文件及缓存
+ * 清理文件
  * */
-const clear = () => Promise.all([
-    del(dist),
-    cache.clearAll(),
-]);
+const clear = () => del(dist);
+
+/** `gulp clearCache`
+ * 清理缓存
+ * */
+const clearCache = () => cache.clearAll();
 
 /** `gulp copy`
  * 清理
@@ -149,7 +151,10 @@ const config = async () => {
  * 构建
  * */
 const build = gulp.series(
-    clear,
+    gulp.parallel(
+        clear,
+        clearCache
+    ),
     _build,
     config,
 );
@@ -171,13 +176,16 @@ const watch = () => {
  * 构建并监听
  * */
 const dev = gulp.series(
-    build,
+    clear,
+    _build,
+    config,
     watch,
 );
 
 // `gulp --tasks` list tasks
 module.exports = {
     clear,
+    clearCache,
     copy,
     ts,
     less,
