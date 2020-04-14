@@ -242,6 +242,9 @@ const image = () => gulp.src(
 )...
 ```
 
+**增量构建改进前后效果对比：**（在拥有多个 `ts` 文件的实际项目中，使用 `gulp.watch` 监听修改一个 `ts` 文件后再次构建的时长）
+
+![增量构建改进前后效果对比](https://github.com/mcc108/MarkdownPhotos/blob/master/mp-gulpfile/gulpwatch.png?raw=true)
 
 ### 8、导出 task
 
