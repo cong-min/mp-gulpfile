@@ -186,8 +186,8 @@ const sourcemaps = require('gulp-sourcemaps');
 
 /* 以 ts 为例, less 同理 */
 const ts = () => gulp.src('src/**/*.ts')
-    .pipe(tsProject()) // 编译ts
     .pipe(sourcemaps.init())
+    .pipe(tsProject()) // 编译ts
     .pipe(mpNpm()) // 分析提取 ts 中用到的依赖
     .pipe(sourcemaps.write('.')) // 以 .map 文件形式导出至同级目录
     .pipe(gulp.dest('dist'));
