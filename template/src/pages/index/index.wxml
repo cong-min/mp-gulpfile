@@ -6,12 +6,12 @@
         title="小程序 Gulp 模板"
         icon="/assets/img/gulp.png">
         <view slot="desc" class="main-content">
-            <view>来自 github.com/mcc108/mp-gulpfile</view>
+            <view>创建自 github.com/mcc108/mp-gulpfile</view>
             <view>微信小程序 gulpfile 最佳实践</view>
         </view>
         <view slot="extend">
             <view>🚀 轻量极速构建</view>
-            <view>🧰 支持 typescript, less</view>
+            <view>🧰 支持 TypeScript, Less</view>
             <view>🗃 按需提取 npm 依赖</view>
             <view>🎡 支持提取小程序 npm 包组件</view>
             <view>🌁 图片压缩</view>
