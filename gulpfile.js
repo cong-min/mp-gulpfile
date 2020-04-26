@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const path = require('path');
 const del = require('del');
 const changed = require('gulp-changed');
 const gulpTs = require('gulp-typescript');
@@ -11,7 +12,7 @@ const cache = require('gulp-cache');
 const mpNpm = require('gulp-mp-npm');
 const jsonfile = require('jsonfile');
 
-const tsProject = gulpTs.createProject('tsconfig.json');
+const resolve = (...args) => path.resolve(__dirname, ...args);
 
 /* config */
 const src = 'src';
@@ -63,6 +64,7 @@ const copy = () => gulp.src(
 /** `gulp ts`
  * 编译ts
  * */
+const tsProject = gulpTs.createProject(resolve('tsconfig.json'));
 const ts = () => gulp.src(
     globs.ts,
     { ...srcOptions, since: gulp.lastRun(ts) },
@@ -140,10 +142,13 @@ const _build = gulp.parallel(
 
 // 将 miniprogramRoot 配置修改为 dist 路径
 const config = async () => {
-    const project = jsonfile.readFileSync('project.config.json', { throws: false });
+    const projectFile = resolve('project.config.json');
+    const project = jsonfile.readFileSync(projectFile, { throws: false });
     if (project) {
-        project.miniprogramRoot = dist;
-        jsonfile.writeFileSync('project.config.json', project, { spaces: 2 });
+        project.miniprogramRoot = path.relative(path.dirname(projectFile), dist);
+        jsonfile.writeFileSync(resolve('project.config.json'), project, { spaces: 2 });
+        project.miniprogramRoot = '/';
+        jsonfile.writeFileSync(resolve(dist, 'project.config.json'), project, { spaces: 2 });
     }
 };
 

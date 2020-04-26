@@ -2,7 +2,7 @@
   "appid": "wxb243b08c8718e2c3",
   "projectname": "mp-gulp-template",
   "libVersion": "2.8.3",
-  "miniprogramRoot": ".miniprogram",
+  "miniprogramRoot": "/",
   "setting": {
     "urlCheck": false,
     "es6": true,
