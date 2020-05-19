@@ -1,7 +1,7 @@
 {
   "name": "mp-gulpfile",
   "description": "微信小程序 gulpfile 最佳实践",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "MIT",
   "bin": {
     "mp-gulpfile": "bin/mp-gulpfile.js"

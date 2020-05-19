@@ -41,6 +41,12 @@ globs.copy = [`${src}/**`,
     `!${globs.less}`, `!${globs.wxss}`,
     `!${globs.image}`]; // 匹配需要拷贝的文件
 
+// 包装 gulp.lastRun, 引入文件 ctime 作为文件变动判断另一标准
+// https://github.com/gulpjs/vinyl-fs/issues/226
+const since = task => (
+    file => (gulp.lastRun(task) > file.stat.ctime ? gulp.lastRun(task) : 0)
+);
+
 /** `gulp clear`
  * 清理文件
  * */
@@ -56,7 +62,7 @@ const clearCache = () => cache.clearAll();
  * */
 const copy = () => gulp.src(
     globs.copy,
-    { ...srcOptions, since: gulp.lastRun(copy) },
+    { ...srcOptions, since: since(copy) },
 )
     .pipe(changed(dist)) // 过滤掉未改变的文件
     .pipe(gulp.dest(dist));
@@ -67,7 +73,7 @@ const copy = () => gulp.src(
 const tsProject = gulpTs.createProject(resolve('tsconfig.json'));
 const ts = () => gulp.src(
     globs.ts,
-    { ...srcOptions, since: gulp.lastRun(ts) },
+    { ...srcOptions, since: since(ts) },
 )
     .pipe(gulpif(sourcemap.ts, sourcemaps.init()))
     .pipe(tsProject()) // 编译ts
@@ -80,7 +86,7 @@ const ts = () => gulp.src(
  * */
 const js = () => gulp.src(
     globs.js,
-    { ...srcOptions, since: gulp.lastRun(js) },
+    { ...srcOptions, since: since(js) },
 )
     .pipe(mpNpm(mpNpmOptions)) // 分析依赖
     .pipe(gulp.dest(dist));
@@ -90,7 +96,7 @@ const js = () => gulp.src(
  * */
 const json = () => gulp.src(
     globs.json,
-    { ...srcOptions, since: gulp.lastRun(json) },
+    { ...srcOptions, since: since(json) },
 )
     .pipe(mpNpm(mpNpmOptions)) // 分析依赖
     .pipe(gulp.dest(dist));
@@ -100,7 +106,7 @@ const json = () => gulp.src(
  * */
 const less = () => gulp.src(
     globs.less,
-    { ...srcOptions, since: gulp.lastRun(less) },
+    { ...srcOptions, since: since(less) },
 )
     .pipe(gulpif(sourcemap.less, sourcemaps.init()))
     .pipe(gulpLess()) // 编译less
@@ -114,7 +120,7 @@ const less = () => gulp.src(
  * */
 const wxss = () => gulp.src(
     globs.wxss,
-    { ...srcOptions, since: gulp.lastRun(wxss) },
+    { ...srcOptions, since: since(wxss) },
 )
     .pipe(mpNpm(mpNpmOptions)) // 分析依赖
     .pipe(gulp.dest(dist));
@@ -124,7 +130,7 @@ const wxss = () => gulp.src(
  * */
 const image = () => gulp.src(
     globs.image,
-    { ...srcOptions, since: gulp.lastRun(image) },
+    { ...srcOptions, since: since(image) },
 )
     .pipe(cache(gulpImage()))
     .pipe(gulp.dest(dist));
@@ -158,7 +164,7 @@ const config = async () => {
 const build = gulp.series(
     gulp.parallel(
         clear,
-        clearCache
+        // clearCache
     ),
     _build,
     config,
