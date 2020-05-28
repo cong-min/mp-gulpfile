@@ -73,7 +73,7 @@ const copy = () => gulp.src(
 const tsProject = gulpTs.createProject(resolve('tsconfig.json'));
 const ts = () => gulp.src(
     globs.ts,
-    { ...srcOptions, since: since(ts) },
+    srcOptions,
 )
     .pipe(gulpif(sourcemap.ts, sourcemaps.init()))
     .pipe(tsProject()) // 编译ts
