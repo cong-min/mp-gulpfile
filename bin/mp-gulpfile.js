@@ -27,7 +27,7 @@ program
             filter: (src, dest) =>
                 !/\.DS_Store|package-lock\.json|node_modules/g.test(src),
         });
-        console.log(`创建项目 ${name} 成功`);
+        console.log(`创建项目 ${ouput} 成功`);
         process.exit(0);
     });
 
