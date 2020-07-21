@@ -21,14 +21,19 @@ program
     .action((name, cmd) => {
         const input = path.resolve(__dirname, '../template');
         const ouput = path.resolve(process.cwd(), name);
-        fs.copySync(input, ouput, {
-            overwrite: false,
-            errorOnExist: true,
-            filter: (src, dest) =>
-                !/\.DS_Store|package-lock\.json|node_modules/g.test(src),
-        });
-        console.log(`创建项目 ${ouput} 成功`);
-        process.exit(0);
+        try {
+            fs.copySync(input, ouput, {
+                overwrite: false,
+                errorOnExist: true,
+                filter: (src, dest) =>
+                    !/\.DS_Store|package-lock\.json/g.test(src),
+            });
+            console.log(`创建项目 ${ouput} 成功`);
+            process.exit(0);
+        } catch (err) {
+            console.error(err);
+            process.exit(1);
+        }
     });
 
 // unknown commands
