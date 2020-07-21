@@ -11,10 +11,8 @@
 ### 方式1、根据模板创建项目
 
 ```bash
-# 安装 mp-gulpfile
-$ npm i -g mp-gulpfile
 # 根据模板创建项目
-$ mp-gulpfile create my-project
+$ npx mp-gulpfile create my-project
 # 安装依赖
 $ cd my-project && npm i
 ```
@@ -43,6 +41,14 @@ $ npm run build
 ## 更多
 
 [细节介绍](Introduction.md)
+
+## 技巧
+
+### 在 less 中引入 npm 中的 wxss
+
+```css
+@import (css) "weui-miniprogram/weui-wxss/dist/style/weui.wxss";
+```
 
 ## License
 
