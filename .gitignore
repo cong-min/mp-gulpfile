@@ -3,6 +3,7 @@
 .DS_Store
 package-lock.json
 node_modules
+test
 
 # Log files
 npm-debug.log*
