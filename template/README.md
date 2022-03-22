@@ -19,4 +19,4 @@ $ npm run build
 
 ---
 
-> 创建自 [mp-gulpfile](https://github.com/mcc108/mp-gulpfile) 微信小程序 gulpfile 最佳实践
+> 创建自 [mp-gulpfile](https://github.com/cong-min/mp-gulpfile) 微信小程序 gulpfile 最佳实践

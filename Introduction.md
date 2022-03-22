@@ -9,7 +9,7 @@
   1. 手动将所需依赖源代码文件拷贝至项目路径中
   2. 通过 `npm` 安装依赖，再手动点击微信开发者工具的 `构建npm` 按钮构建出依赖文件（将构建至 `miniprogram_npm` 文件夹）
 
-![小程序标准开发模式](https://github.com/mcc108/MarkdownPhotos/blob/master/mp-gulpfile/mpbz.png?raw=true)
+![小程序标准开发模式](https://github.com/cong-min/MarkdownPhotos/blob/master/mp-gulpfile/mpbz.png?raw=true)
 
 ### 2、小程序官方 TS 开发模式
 
@@ -17,7 +17,7 @@
 
 - 通过 `tsc` 命令将 `.ts` 文件编译为 `.js` ，以支持 `TypeScript` 语法
 
-![小程序官方 TS 开发模式](https://github.com/mcc108/MarkdownPhotos/blob/master/mp-gulpfile/mpts.png?raw=true)
+![小程序官方 TS 开发模式](https://github.com/cong-min/MarkdownPhotos/blob/master/mp-gulpfile/mpts.png?raw=true)
 
 ### 3、小程序搭配 gulpfile 最佳实践的开发模式
 
@@ -31,9 +31,9 @@
   - 分析代码，依赖自动提取，支持提取普通 `npm` 包与[小程序专用 `npm` 包](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html#发布小程序-npm-包的约束)
   - 其余文件将直接拷贝至目标路径
 
-![小程序搭配 gulpfile 最佳实践的开发模式](https://github.com/mcc108/MarkdownPhotos/blob/master/mp-gulpfile/mpgulpfile.png?raw=true)
+![小程序搭配 gulpfile 最佳实践的开发模式](https://github.com/cong-min/MarkdownPhotos/blob/master/mp-gulpfile/mpgulpfile.png?raw=true)
 
-该开发模式下最佳实践的 `gulpfile.js` 文件详细内容可以查阅 https://github.com/mcc108/mp-gulpfile/blob/master/gulpfile.js ，以及对应的项目模板 https://github.com/mcc108/mp-gulpfile/tree/master/template 。
+该开发模式下最佳实践的 `gulpfile.js` 文件详细内容可以查阅 https://github.com/cong-min/mp-gulpfile/blob/master/gulpfile.js ，以及对应的项目模板 https://github.com/cong-min/mp-gulpfile/tree/master/template 。
 
 接下来是对各功能点配置改进的思考与讲解。
 
@@ -84,7 +84,7 @@ const image = () => gulp.src('src/**/*.{png,jpg,jpeg,gif,svg}')
 
 **为什么压缩插件使用 `gulp-image` 而不使用 `gulp-imagemin` ？**
 
-![压缩图片对比](https://github.com/mcc108/MarkdownPhotos/blob/master/mp-gulpfile/gulpimage.png?raw=true)
+![压缩图片对比](https://github.com/cong-min/MarkdownPhotos/blob/master/mp-gulpfile/gulpimage.png?raw=true)
 
 <!--
 |  | gulp-image | gulp-imagemin |
@@ -110,7 +110,7 @@ const image = () => gulp.src('src/**/*.{png,jpg,jpeg,gif,svg}')
 
 > 使用 `npm` 包时如果只引入包名，则默认寻找包名下的 `index.js` 文件或者 `index` 组件
 
-根据这个原理，我开发了一个用以小程序提取 `npm` 依赖包的 `gulp` 插件 [gulp-mp-npm](https://github.com/mcc108/gulp-mp-npm) ，有以下特点：
+根据这个原理，我开发了一个用以小程序提取 `npm` 依赖包的 `gulp` 插件 [gulp-mp-npm](https://github.com/cong-min/gulp-mp-npm) ，有以下特点：
 
 - 依赖分析，仅会提取使用到的依赖与组件
 - 支持提取普通 `npm` 包与[小程序专用 `npm` 包](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html#发布小程序-npm-包的约束)
@@ -119,7 +119,7 @@ const image = () => gulp.src('src/**/*.{png,jpg,jpeg,gif,svg}')
 
 具体详见可在另一篇文章中看到：[小程序提取npm依赖包gulp插件方案设计](#) 。
 
-![gulp-mp-npm](https://github.com/mcc108/MarkdownPhotos/blob/master/mp-gulpfile/mpnpm.png?raw=true)
+![gulp-mp-npm](https://github.com/cong-min/MarkdownPhotos/blob/master/mp-gulpfile/mpnpm.png?raw=true)
 
 使用 `gulp-mp-npm` 插件，可实现 `npm` 依赖的自动分析与按需提取：
 
@@ -244,7 +244,7 @@ const image = () => gulp.src(
 
 **增量构建改进前后效果对比：**（在拥有多个 `ts` 文件的实际项目中，使用 `gulp.watch` 监听修改一个 `ts` 文件后再次构建的时长）
 
-![增量构建改进前后效果对比](https://github.com/mcc108/MarkdownPhotos/blob/master/mp-gulpfile/gulpwatch.png?raw=true)
+![增量构建改进前后效果对比](https://github.com/cong-min/MarkdownPhotos/blob/master/mp-gulpfile/gulpwatch.png?raw=true)
 
 ### 8、导出 task
 

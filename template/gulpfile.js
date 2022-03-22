@@ -7,7 +7,7 @@ const gulpif = require('gulp-if');
 const sourcemaps = require('gulp-sourcemaps');
 const gulpLess = require('gulp-less');
 const rename = require('gulp-rename');
-const gulpImage = require('gulp-image');
+// const gulpImage = require('gulp-image');
 const cache = require('gulp-cache');
 const mpNpm = require('gulp-mp-npm');
 const jsonfile = require('jsonfile');
@@ -34,12 +34,13 @@ const globs = {
     json: `${src}/**/*.json`, // 匹配 json 文件
     less: `${src}/**/*.less`, // 匹配 less 文件
     wxss: `${src}/**/*.wxss`, // 匹配 wxss 文件
-    image: `${src}/**/*.{png,jpg,jpeg,gif,svg}`, // 匹配 image 文件
+    // image: `${src}/**/*.{png,jpg,jpeg,gif,svg}`, // 匹配 image 文件
 };
 globs.copy = [`${src}/**`,
     `!${globs.ts}`, `!${globs.js}`, `!${globs.json}`,
     `!${globs.less}`, `!${globs.wxss}`,
-    `!${globs.image}`]; // 匹配需要拷贝的文件
+    // `!${globs.image}`
+]; // 匹配需要拷贝的文件
 
 // 包装 gulp.lastRun, 引入文件 ctime 作为文件变动判断另一标准
 // https://github.com/gulpjs/vinyl-fs/issues/226
@@ -128,12 +129,12 @@ const wxss = () => gulp.src(
 /** `gulp image`
  * 压缩图片
  * */
-const image = () => gulp.src(
-    globs.image,
-    { ...srcOptions, since: since(image) },
-)
-    .pipe(cache(gulpImage()))
-    .pipe(gulp.dest(dist));
+// const image = () => gulp.src(
+//     globs.image,
+//     { ...srcOptions, since: since(image) },
+// )
+//     .pipe(cache(gulpImage()))
+//     .pipe(gulp.dest(dist));
 
 // 不清理 dist 的构建
 const _build = gulp.parallel(
@@ -143,7 +144,7 @@ const _build = gulp.parallel(
     json,
     less,
     wxss,
-    image,
+    // image,
 );
 
 // 将 miniprogramRoot 配置修改为 dist 路径
@@ -180,7 +181,7 @@ const watch = () => {
     gulp.watch(globs.json, watchOptions, json);
     gulp.watch(globs.less, watchOptions, less);
     gulp.watch(globs.wxss, watchOptions, wxss);
-    gulp.watch(globs.image, watchOptions, image);
+    // gulp.watch(globs.image, watchOptions, image);
 };
 
 /** `gulp` or `gulp dev`
@@ -200,7 +201,7 @@ module.exports = {
     copy,
     ts,
     less,
-    image,
+    // image,
     build,
     watch,
     dev,
