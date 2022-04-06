@@ -117,8 +117,6 @@ const image = () => gulp.src('src/**/*.{png,jpg,jpeg,gif,svg}')
 - 不会对依赖进行编译与打包（交给微信开发者工具或者其他 `gulp` 插件完成）
 - 兼容官方方案及原理，同时支持自定义 `npm` 输出文件夹
 
-具体详见可在另一篇文章中看到：[小程序提取npm依赖包gulp插件方案设计](#) 。
-
 ![gulp-mp-npm](https://github.com/cong-min/MarkdownPhotos/blob/master/mp-gulpfile/mpnpm.png?raw=true)
 
 使用 `gulp-mp-npm` 插件，可实现 `npm` 依赖的自动分析与按需提取：
